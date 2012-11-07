@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <include layout="@layout/head"  />
+    <include layout="@layout/main_header"  />
 	<include layout="@layout/main_grid_view"/>
     <include layout="@layout/main_tab" />
 

@@ -4,5 +4,11 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="bottom_tab_practise">考试练习</string>
+    <string name="bottom_tab_sign">交通标志</string>
+    <string name="bottom_tab_technique">考试技巧</string>
+    <string name="bottom_tab_setting">设置</string>
+    <string name="bottom_tab_more">更多</string>
+    <string name="title_activity_sign">SignActivity</string>
 
 </resources>
