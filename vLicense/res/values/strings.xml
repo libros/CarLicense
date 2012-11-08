@@ -10,5 +10,6 @@
     <string name="bottom_tab_setting">设置</string>
     <string name="bottom_tab_more">更多</string>
     <string name="title_activity_sign">SignActivity</string>
+    <string name="title_activity_question">QuestionActivity</string>
 
 </resources>

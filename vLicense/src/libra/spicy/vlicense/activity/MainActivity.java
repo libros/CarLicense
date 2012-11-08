@@ -1,5 +1,6 @@
-package libra.spicy.vlicense;
+package libra.spicy.vlicense.activity;
 
+import libra.spicy.vlicense.R;
 import libra.spicy.vlicense.utils.UIActivity;
 import libra.spicy.vlicense.utils.UIFactory;
 import android.app.Activity;
