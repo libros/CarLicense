@@ -33,7 +33,6 @@
                 android:id="@+id/main_tab_practise"
                 style="@style/MMTabButton"
                 android:layout_weight="1.0"
-                android:checked="true"
                 android:drawableTop="@drawable/bg_checkbox_icon_menu_0"
                 android:text="@string/bottom_tab_practise" />
 
