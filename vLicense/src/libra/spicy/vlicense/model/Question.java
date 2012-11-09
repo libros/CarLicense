@@ -15,7 +15,6 @@ public class Question {
 			String mQuestion, String[] mAnswers, String mRightAnswer,
 			String mExplaination, int mChapter, boolean isWrong,
 			Classification classification) {
-
 		super();
 		this.mQuestionNumber = mQuestionNumber;
 		this.mImageFileName = mImageFileName;
@@ -28,59 +27,59 @@ public class Question {
 		this.classification = classification;
 	}
 
-	public String getmQuestionNumber() {
+	public String getQuestionNumber() {
 		return mQuestionNumber;
 	}
 
-	public void setmQuestionNumber(String mQuestionNumber) {
+	public void setQuestionNumber(String mQuestionNumber) {
 		this.mQuestionNumber = mQuestionNumber;
 	}
 
-	public String getmImageFileName() {
+	public String getImageFileName() {
 		return mImageFileName;
 	}
 
-	public void setmImageFileName(String mImageFileName) {
+	public void setImageFileName(String mImageFileName) {
 		this.mImageFileName = mImageFileName;
 	}
 
-	public String getmQuestion() {
+	public String getQuestion() {
 		return mQuestion;
 	}
 
-	public void setmQuestion(String mQuestion) {
+	public void setQuestion(String mQuestion) {
 		this.mQuestion = mQuestion;
 	}
 
-	public String[] getmAnswers() {
+	public String[] getAnswers() {
 		return mAnswers;
 	}
 
-	public void setmAnswers(String[] mAnswers) {
+	public void setAnswers(String[] mAnswers) {
 		this.mAnswers = mAnswers;
 	}
 
-	public String getmRightAnswer() {
+	public String getRightAnswer() {
 		return mRightAnswer;
 	}
 
-	public void setmRightAnswer(String mRightAnswer) {
+	public void setRightAnswer(String mRightAnswer) {
 		this.mRightAnswer = mRightAnswer;
 	}
 
-	public String getmExplaination() {
+	public String getExplaination() {
 		return mExplaination;
 	}
 
-	public void setmExplaination(String mExplaination) {
+	public void setExplaination(String mExplaination) {
 		this.mExplaination = mExplaination;
 	}
 
-	public int getmChapter() {
+	public int getChapter() {
 		return mChapter;
 	}
 
-	public void setmChapter(int mChapter) {
+	public void setChapter(int mChapter) {
 		this.mChapter = mChapter;
 	}
 

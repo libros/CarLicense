@@ -60,7 +60,7 @@ public class QuestionActivity extends Activity {
 				TextView question_textview = (TextView) view
 						.findViewById(R.id.question_textview);
 				question_textview.setText(QuestionFactory.getByIndex(position)
-						.getmQuestion());
+						.getQuestion());
 
 				((ViewPager) container).addView(view);
 				
