@@ -3,7 +3,6 @@ package libra.spicy.vlicense.activity;
 import java.util.ArrayList;
 
 import libra.spicy.vlicense.R;
-import libra.spicy.vlicense.controller.QuestionFactory;
 import libra.spicy.vlicense.utils.MockQuestionSource;
 import android.app.Activity;
 import android.os.Bundle;
