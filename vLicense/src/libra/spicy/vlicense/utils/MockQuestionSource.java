@@ -28,4 +28,13 @@ public class MockQuestionSource {
 			}
 	}
 
+	public static int sizeOfQuestion() {
+		return 100;
+	}
+
+	public static Question getByIndex(int position) {
+		// TODO Auto-generated method stub
+		return questions.get(position);
+	}
+
 }
