@@ -1,10 +1,7 @@
 package libra.spicy.vlicense.utils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
-import libra.spicy.vlicense.model.Answer;
 import libra.spicy.vlicense.model.Chapter;
 import libra.spicy.vlicense.model.Question;
 import libra.spicy.vlicense.model.Question.Classification;
