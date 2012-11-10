@@ -1,38 +1,66 @@
 package libra.spicy.vlicense.model;
 
 public class Question {
-	private String mQuestionNumber;
+	// 题目标号，应该是题目的id，唯一的主键
+	private int mQuestionId;
+
+	// 题目的图片名，如果没有就为null
 	private String mImageFileName;
+
+	// 题目的文本正文
 	private String mQuestion;
-	private String[] mAnswers;
-	private String mRightAnswer;
+
+	// 题目对应的选项
+	private Answer[] mAnswers;
+
+	// 题目详解，这个题目的原理
 	private String mExplaination;
-	private int mChapter;
-	private boolean isWrong;
+
+	// 问题所在的章节
+	private Chapter mChapter;
+
+	// 该题目曾经做错过的次数
+	private int mWrongTimes;
+
+	// 分类，大型、小型、中型车对应的车本
 	private Classification classification;
 
-	public Question(String mQuestionNumber, String mImageFileName,
-			String mQuestion, String[] mAnswers, String mRightAnswer,
-			String mExplaination, int mChapter, boolean isWrong,
-			Classification classification) {
+	public Question(int mQuestionNumber, String mImageFileName,
+			String mQuestion, Answer[] mAnswers, String mExplaination,
+			Chapter mChapter, int mWrongTimes, Classification classification) {
 		super();
-		this.mQuestionNumber = mQuestionNumber;
+		this.mQuestionId = mQuestionNumber;
 		this.mImageFileName = mImageFileName;
 		this.mQuestion = mQuestion;
 		this.mAnswers = mAnswers;
-		this.mRightAnswer = mRightAnswer;
 		this.mExplaination = mExplaination;
 		this.mChapter = mChapter;
-		this.isWrong = isWrong;
+		this.mWrongTimes = mWrongTimes;
 		this.classification = classification;
 	}
 
-	public String getQuestionNumber() {
-		return mQuestionNumber;
+	public Answer[] getAnswers() {
+		return mAnswers;
 	}
 
-	public void setQuestionNumber(String mQuestionNumber) {
-		this.mQuestionNumber = mQuestionNumber;
+	public void setAnswers(Answer[] mAnswers) {
+		this.mAnswers = mAnswers;
+	}
+
+	public int getWrongTimes() {
+		return mWrongTimes;
+	}
+
+	public void setWrongTimes(int wrongTimes) {
+		this.mWrongTimes = wrongTimes;
+	}
+
+	public int getQuestionNumber() {
+		return mQuestionId;
+	}
+
+	public void setQuestionNumber(int mQuestionNumber) {
+		this.mQuestionId = mQuestionNumber;
 	}
 
 	public String getImageFileName() {
@@ -51,22 +79,6 @@ public class Question {
 		this.mQuestion = mQuestion;
 	}
 
-	public String[] getAnswers() {
-		return mAnswers;
-	}
-
-	public void setAnswers(String[] mAnswers) {
-		this.mAnswers = mAnswers;
-	}
-
-	public String getRightAnswer() {
-		return mRightAnswer;
-	}
-
-	public void setRightAnswer(String mRightAnswer) {
-		this.mRightAnswer = mRightAnswer;
-	}
-
 	public String getExplaination() {
 		return mExplaination;
 	}
@@ -75,20 +87,12 @@ public class Question {
 		this.mExplaination = mExplaination;
 	}
 
-	public int getChapter() {
+	public Chapter getChapter() {
 		return mChapter;
 	}
 
-	public void setChapter(int mChapter) {
+	public void setChapter(Chapter mChapter) {
 		this.mChapter = mChapter;
-	}
-
-	public boolean isWrong() {
-		return isWrong;
-	}
-
-	public void setWrong(boolean isWrong) {
-		this.isWrong = isWrong;
 	}
 
 	public Classification getClassification() {

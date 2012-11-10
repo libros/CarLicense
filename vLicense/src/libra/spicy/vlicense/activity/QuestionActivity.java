@@ -3,18 +3,13 @@ package libra.spicy.vlicense.activity;
 import java.util.ArrayList;
 
 import libra.spicy.vlicense.R;
-import libra.spicy.vlicense.utils.QuestionFactory;
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 public class QuestionActivity extends Activity {
 	private GestureDetector mGestureDetector;
@@ -39,44 +34,44 @@ public class QuestionActivity extends Activity {
 		viewList.add(view2);
 		viewList.add(view3);
 		viewList.add(view4);
+//
+//		PagerAdapter pageAdapter = new PagerAdapter() {
+//
+//			@Override
+//			public int getCount() {
+//				return QuestionFactory.sizeOfQuestion();
+//			}
+//
+//			@Override
+//			public boolean isViewFromObject(View arg0, Object arg1) {
+//				return arg0 == arg1;
+//			}
+//
+//			@Override
+//			public Object instantiateItem(ViewGroup container, int position) {
+//				Log.d("debug", "instantiateItem position:" + position);
+//
+//				View view = viewList.get(position % viewList.size());
+//				TextView question_textview = (TextView) view
+//						.findViewById(R.id.question_textview);
+//				question_textview.setText(QuestionFactory.getByIndex(position)
+//						.getQuestion());
+//
+//				((ViewPager) container).addView(view);
+//				
+//				return view;
+//			}
+//
+//			@Override
+//			public void destroyItem(ViewGroup container, int position,
+//					Object object) {
+//				Log.d("debug", "destroyItem position:" + position);
+//				((ViewPager) container).removeView( viewList.get(position % viewList.size()));
+//			}
+//
+//		};
 
-		PagerAdapter pageAdapter = new PagerAdapter() {
-
-			@Override
-			public int getCount() {
-				return QuestionFactory.sizeOfQuestion();
-			}
-
-			@Override
-			public boolean isViewFromObject(View arg0, Object arg1) {
-				return arg0 == arg1;
-			}
-
-			@Override
-			public Object instantiateItem(ViewGroup container, int position) {
-				Log.d("debug", "instantiateItem position:" + position);
-
-				View view = viewList.get(position % viewList.size());
-				TextView question_textview = (TextView) view
-						.findViewById(R.id.question_textview);
-				question_textview.setText(QuestionFactory.getByIndex(position)
-						.getQuestion());
-
-				((ViewPager) container).addView(view);
-				
-				return view;
-			}
-
-			@Override
-			public void destroyItem(ViewGroup container, int position,
-					Object object) {
-				Log.d("debug", "destroyItem position:" + position);
-				((ViewPager) container).removeView( viewList.get(position % viewList.size()));
-			}
-
-		};
-
-		viewPager.setAdapter(pageAdapter);
+//		viewPager.setAdapter(pageAdapter);
 	}
 
 	@Override
