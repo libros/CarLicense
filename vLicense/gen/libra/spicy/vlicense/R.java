@@ -90,23 +90,24 @@ public final class R {
         public static final int top_1=0x7f020024;
     }
     public static final class id {
-        public static final int answer_checkbox=0x7f0b0011;
-        public static final int answer_textview=0x7f0b0012;
+        public static final int answer_checkbox=0x7f0b0012;
+        public static final int answer_textview=0x7f0b0013;
         public static final int btn_leftTop=0x7f0b0004;
         public static final int btn_rightTop=0x7f0b0006;
         public static final int item_image=0x7f0b0002;
         public static final int item_textview=0x7f0b0003;
-        public static final int main_grid_view=0x7f0b0009;
-        public static final int main_tab_group=0x7f0b000b;
-        public static final int main_tab_host=0x7f0b000a;
-        public static final int main_tab_more=0x7f0b0010;
-        public static final int main_tab_practise=0x7f0b000c;
-        public static final int main_tab_setting=0x7f0b000f;
-        public static final int main_tab_sign=0x7f0b000d;
-        public static final int main_tab_technique=0x7f0b000e;
-        public static final int menu_settings=0x7f0b0013;
+        public static final int main_grid_view=0x7f0b000a;
+        public static final int main_tab_group=0x7f0b000c;
+        public static final int main_tab_host=0x7f0b000b;
+        public static final int main_tab_more=0x7f0b0011;
+        public static final int main_tab_practise=0x7f0b000d;
+        public static final int main_tab_setting=0x7f0b0010;
+        public static final int main_tab_sign=0x7f0b000e;
+        public static final int main_tab_technique=0x7f0b000f;
+        public static final int menu_settings=0x7f0b0014;
         public static final int question_activity_layout=0x7f0b0000;
         public static final int question_image=0x7f0b0008;
+        public static final int question_list_view=0x7f0b0009;
         public static final int question_textview=0x7f0b0007;
         public static final int question_view_pager=0x7f0b0001;
         public static final int tv_head=0x7f0b0005;
@@ -122,8 +123,9 @@ public final class R {
         public static final int main_grid_view=0x7f030007;
         public static final int main_header=0x7f030008;
         public static final int main_tab=0x7f030009;
-        public static final int question_listview_item=0x7f03000a;
-        public static final int sign_grid_view=0x7f03000b;
+        public static final int question_list_item=0x7f03000a;
+        public static final int question_listview_item=0x7f03000b;
+        public static final int sign_grid_view=0x7f03000c;
     }
     public static final class menu {
         public static final int activity_main=0x7f0a0000;

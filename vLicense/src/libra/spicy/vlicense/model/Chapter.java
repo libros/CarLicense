@@ -29,4 +29,11 @@ public class Chapter {
 		this.chapterNumber = chapterNumber;
 	}
 
+	@Override
+	public String toString() {
+		return "Chapter [chapterName=" + chapterName + ", chapterNumber="
+				+ chapterNumber + "]";
+	}
+	
+	
 }

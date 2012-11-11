@@ -139,5 +139,17 @@ public interface IQuestionDao {
 	 * @return 设置成功返回true，否则false
 	 */
 	public boolean markAsWrong(int pQuestionId, Date pNow);
+	
+	
+	
+	/**
+	 * 查找某一章的分页查询
+	 * @param pChapter 某一章编号
+	 * @param pPageNumber 第几页，页码编号，从0开始
+	 * @param pPageSize 每一页的大小
+	 * @return  返回第pPageNumber页的所有Question
+	 */
+	
+	public List<Question> findQuestionListInChapterWithPageNumberAndPagesize(int pChapter,int pPageNumber,int pPageSize);
 
 }

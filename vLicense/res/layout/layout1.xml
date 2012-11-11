@@ -9,6 +9,10 @@
         android:id="@+id/question_textview"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textSize="20dp"
+        android:lines="3"
+        android:maxLines="3"
         android:textStyle="bold" />
 
     <ImageView
@@ -17,10 +21,16 @@
         android:layout_height="wrap_content"
         android:visibility="gone" />
 
-   <!--  <ListView
+    <ListView
         android:id="@+id/question_list_view"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-    </ListView> -->
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:footerDividersEnabled="true"
+        android:headerDividersEnabled="true"
+        android:paddingTop="10dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+         >
+    </ListView>
 
 </LinearLayout>
