@@ -1,14 +1,15 @@
 package libra.spicy.vlicense.dao;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-
 import libra.spicy.vlicense.model.Answer;
 import libra.spicy.vlicense.model.Chapter;
 import libra.spicy.vlicense.model.Question;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -25,7 +26,7 @@ public class DatabaseWork implements IQuestionDao {
 		this.class_ = class_;
 		databasehelper = DatabaseHelper.getDatabaseHelper();
 	}
-
+ 
 	public static DatabaseWork getInstance(Context pContext, String class_) {
 		if (self == null) {
 			self = new DatabaseWork(pContext, class_);
@@ -34,11 +35,7 @@ public class DatabaseWork implements IQuestionDao {
 	}
 
 	public int findNumberOfQuestionsInAChapter(int pChapter) {// 如果返回 0，就是没查到！
-		// // TODO Auto-generated method stub
-		// // 首先判断pQuestionId试题id是否合法！
-		// if (pChapter < 1 || pChapter > DataBase_Fields.Chapter_allNum) {
-		// return 0;
-		// }
+		 // TODO Auto-generated method stub
 		int NumberOfQuestionsInAChapter;
 		SQLiteDatabase database = databasehelper
 				.openReadableDatabase(this.context);
@@ -155,6 +152,17 @@ public class DatabaseWork implements IQuestionDao {
 
 	public boolean setLastVisitTime(int pQuestionId, Date pDate) {
 		// TODO Auto-generated method stub
+		SQLiteDatabase database = databasehelper
+				.openReadableDatabase(this.context);
+		if(database!=null){
+			ContentValues cv = new ContentValues();
+			SimpleDateFormat  formatter=new  SimpleDateFormat("yyyy年MM月dd日   HH:mm:ss     ");     
+	        cv.put("LastVisitTime",formatter.format(pDate));
+	        database.update(DataBase_Fields.mquestionTab, cv, DataBase_Fields.mQuestionNumber+"=?", new String[]{String.valueOf(pQuestionId)});      
+	        database.close();
+	        return true;
+		}
+		database.close();
 		return false;
 	}
 
@@ -217,32 +225,112 @@ public class DatabaseWork implements IQuestionDao {
 
 	public int getNumberOfMarkedQuestion(int pChapter) {
 		// TODO Auto-generated method stub
+		SQLiteDatabase database = databasehelper
+				.openReadableDatabase(this.context);	
+	    String sql="SELECT * FROM "+DataBase_Fields.mquestionTab+" where "+DataBase_Fields.mChapter+" =? and "+DataBase_Fields.Marked+" =?";
+	                                                                                //1就是true；0就是false
+	    Cursor cursor=database.rawQuery(sql, new String[]{String.valueOf(pChapter),String.valueOf(1)});
+	    if(cursor!=null){
+	    	int marked_long = cursor.getCount();		
+	    	database.close();		
+	    	return marked_long;	
+	    }	
+	    database.close();
 		return 0;
 	}
 
 	public int getNumberOfMarkedQuestion() {
 		// TODO Auto-generated method stub
+		SQLiteDatabase database = databasehelper
+				.openReadableDatabase(this.context);    
+	    String sql="SELECT * FROM "+DataBase_Fields.mquestionTab+" where "+DataBase_Fields.Marked+" =?";
+	                                                        //1就是true；0就是false
+	    Cursor cursor=database.rawQuery(sql, new String[]{String.valueOf(1)});
+	    if(cursor!=null){
+	    	int marked_long = cursor.getCount();	
+	    	cursor.moveToFirst();
+	    	database.close();	
+	    	System.out.println("marked_long"+marked_long);
+	    	return marked_long;	
+	    }	
+	    database.close();
 		return 0;
 	}
 
 	public List<Question> getMarkedQuestionsInChapter(int pChapter) {
 		// TODO Auto-generated method stub
+		SQLiteDatabase database = databasehelper
+				.openReadableDatabase(this.context);   
+	    String sql="SELECT * FROM "+DataBase_Fields.mquestionTab+" where "+DataBase_Fields.mChapter+" =? and "+DataBase_Fields.Marked+" =?";
+                                                                                      //1就是true；0就是false
+        Cursor cursor=database.rawQuery(sql, new String[]{String.valueOf(pChapter),String.valueOf(1)});
+        if(cursor!=null){
+	    	int long_cursor=cursor.getCount();
+	    	List<Question> list_question=new ArrayList<Question>(long_cursor);
+	    	Boolean is=cursor.moveToFirst();
+	    	while(is){
+	    		Question question=getQuestion(cursor);
+	    		list_question.add(question);
+	    		is=cursor.moveToNext();
+	    	}
+	    	database.close();	
+	    	return list_question;	
+	    }	
+	    database.close();
 		return null;
 	}
 
 	public List<Question> getMarkedQuestionsInChapter() {
 		// TODO Auto-generated method stub
+		SQLiteDatabase database = databasehelper
+				.openReadableDatabase(this.context);  
+	    String sql="SELECT * FROM "+DataBase_Fields.mquestionTab+" where "+DataBase_Fields.Marked+" =?";
+	                                                        //1就是true；0就是false
+	    Cursor cursor=database.rawQuery(sql, new String[]{String.valueOf(1)});
+	    if(cursor!=null){
+	    	int long_cursor=cursor.getCount();
+	    	List<Question> list_question=new ArrayList<Question>(long_cursor);
+	    	Boolean is=cursor.moveToFirst();
+	    	while(is){
+	    		Question question=getQuestion(cursor);
+	    		list_question.add(question);
+	    		is=cursor.moveToNext();
+	    	}
+	    	database.close();	
+	    	return list_question;	
+	    }	
+	    database.close();
 		return null;
 	}
 
 	public boolean markAsWrong(int pQuestionId, Date pNow) {
 		// TODO Auto-generated method stub
+		SQLiteDatabase database = databasehelper
+				.openReadableDatabase(this.context);
+		if(database!=null){
+			String sql="select * from "+DataBase_Fields.mquestionTab+" where "+DataBase_Fields.mQuestionNumber+"=?";
+			Cursor cursor=database.rawQuery(sql, new String[]{Integer.toString(pQuestionId)});
+			int mWrongTimes = 0;
+			if(cursor!=null){
+				Boolean is=cursor.moveToFirst();
+				mWrongTimes=cursor.getInt(cursor.getColumnIndex(DataBase_Fields.isWrong));
+				//错误数加1
+				mWrongTimes++;
+				ContentValues cv = new ContentValues();
+		        cv.put("Error", mWrongTimes);
+		        database.update(DataBase_Fields.mquestionTab, cv, DataBase_Fields.mQuestionNumber+"=?", new String[]{String.valueOf(pQuestionId)});      
+			}
+			//设置最后访问时间！
+			setLastVisitTime(pQuestionId, pNow);
+	        database.close();
+	        return true;
+		}
+		database.close();
 		return false;
 	}
 
 	/**
 	 * 根据游标cursor得到相应的一个question
-	 * 
 	 * @param cursor
 	 * @return：question
 	 */
@@ -272,10 +360,8 @@ public class DatabaseWork implements IQuestionDao {
 
 		for (int i = 0; i < answerString.length; i++) {
 			String answer = answerString[i];
-
 			if (answer != null && answer.trim().length() > 0) {
 				Answer theAnswer = new Answer(answerString[i], false);
-
 				if ("A".equalsIgnoreCase(mRightAnswer) && i == 0) {
 					theAnswer.setCorrect(true);
 				} else if ("B".equalsIgnoreCase(mRightAnswer) && i == 1) {
@@ -287,28 +373,8 @@ public class DatabaseWork implements IQuestionDao {
 				}
 				answers.add(theAnswer);
 			}
-
 		}
-
-//		Answer[] mAnswers = null;
-		/*
-		 * 
-		 * if ("A".equals(mRightAnswer)) { mAnswers = new Answer[] { new
-		 * Answer(mAnswer_a, true), new Answer(mAnswer_b, false), new
-		 * Answer(mAnswer_c, false), new Answer(mAnswer_d, false) };
-		 * 
-		 * } else if ("B".equals(mRightAnswer)) { mAnswers = new Answer[] { new
-		 * Answer(mAnswer_a, false), new Answer(mAnswer_b, true), new
-		 * Answer(mAnswer_c, false), new Answer(mAnswer_d, false) }; } else if
-		 * ("C".equals(mRightAnswer)) { mAnswers = new Answer[] { new
-		 * Answer(mAnswer_a, false), new Answer(mAnswer_b, false), new
-		 * Answer(mAnswer_c, true), new Answer(mAnswer_d, false) }; } else if
-		 * ("D".equals(mRightAnswer)) { mAnswers = new Answer[] { new
-		 * Answer(mAnswer_a, false), new Answer(mAnswer_b, false), new
-		 * Answer(mAnswer_c, false), new Answer(mAnswer_d, true) };
-		 * 
-		 * }
-		 */String mExplaination = cursor.getString(cursor
+		String mExplaination = cursor.getString(cursor
 				.getColumnIndex(DataBase_Fields.mExplaination));
 		int mChapter = cursor.getInt(cursor
 				.getColumnIndex(DataBase_Fields.mChapter));
@@ -319,16 +385,15 @@ public class DatabaseWork implements IQuestionDao {
 		return question;
 	}
 
+	
 	public List<Question> findQuestionListInChapterWithPageNumberAndPagesize(
 			int pChapter, int pPageNumber, int pPageSize) {
-		System.out
-				.println("findQuestionListInChapterWithPageNumberAndPagesize");
-
+		System.out.println("findQuestionListInChapterWithPageNumberAndPagesize");
+		
 		SQLiteDatabase database = databasehelper
 				.openReadableDatabase(this.context);
 		String sql = null;
 		Cursor cursor = null;
-
 		if (pChapter == 0) {
 			sql = "select * from questions where limit ?,?";
 			cursor = database.rawQuery(sql,
@@ -361,3 +426,26 @@ public class DatabaseWork implements IQuestionDao {
 	// class_c是1-7章；class_b是1-8章；class_a是1-7、9章
 
 }
+
+
+
+
+//Answer[] mAnswers = null;
+/*
+ * 
+ * if ("A".equals(mRightAnswer)) { mAnswers = new Answer[] { new
+ * Answer(mAnswer_a, true), new Answer(mAnswer_b, false), new
+ * Answer(mAnswer_c, false), new Answer(mAnswer_d, false) };
+ * 
+ * } else if ("B".equals(mRightAnswer)) { mAnswers = new Answer[] { new
+ * Answer(mAnswer_a, false), new Answer(mAnswer_b, true), new
+ * Answer(mAnswer_c, false), new Answer(mAnswer_d, false) }; } else if
+ * ("C".equals(mRightAnswer)) { mAnswers = new Answer[] { new
+ * Answer(mAnswer_a, false), new Answer(mAnswer_b, false), new
+ * Answer(mAnswer_c, true), new Answer(mAnswer_d, false) }; } else if
+ * ("D".equals(mRightAnswer)) { mAnswers = new Answer[] { new
+ * Answer(mAnswer_a, false), new Answer(mAnswer_b, false), new
+ * Answer(mAnswer_c, false), new Answer(mAnswer_d, true) };
+ * 
+ * }
+ */

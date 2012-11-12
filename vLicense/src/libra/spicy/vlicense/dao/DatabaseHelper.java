@@ -27,8 +27,11 @@ public class DatabaseHelper {
 		databaseFilename = DATABASE_PATH + "/" + DB_NAME;
 	}
 
-	public static DatabaseHelper getDatabaseHelper() {
-		
+	/**
+	 * 得到databaseHelper
+	 * @return
+	 */
+	public static DatabaseHelper getDatabaseHelper() {		
 		if (self == null) {
 			self = new DatabaseHelper();
 		}
@@ -36,7 +39,7 @@ public class DatabaseHelper {
 	}
 
 	/**
-	 * 打开制度数据库，如果数据库不存在，就创建它
+	 * 打开可读数据库，如果数据库不存在，就创建它
 	 * 
 	 * @param context
 	 *            Activity Context
@@ -53,9 +56,8 @@ public class DatabaseHelper {
 
 	/**
 	 * 打开可写数据库，如果数据库不存在，就创建它
-	 * 
 	 * @param context
-	 *            Activity Context
+	 *        Activity Context
 	 * @return database
 	 */
 	public SQLiteDatabase openReadWriteDatabase(Context context) {
@@ -68,14 +70,12 @@ public class DatabaseHelper {
 
 	/**
 	 * 打开数据库方法
-	 * 
 	 * @param databaseFilename
-	 *            :数据库在sd卡上的绝对路径
+	 *        :数据库在sd卡上的绝对路径
 	 * @return：database对象
 	 */
 	public void createDatabase(Context context) {
 		System.out.println("create Database");
-
 		// 首先判断是否安装sd卡！
 		if (android.os.Environment.getExternalStorageState().equals(
 				android.os.Environment.MEDIA_MOUNTED)) {
@@ -91,10 +91,8 @@ public class DatabaseHelper {
 				if (!(new File(databaseFilename)).exists()) {
 					System.out.println("拷贝数据库文件");
 					// 获得封装jz.db文件的InputStream对象
-					InputStream is = context.getResources().openRawResource(
-							R.raw.jz);
-					FileOutputStream fos = new FileOutputStream(
-							databaseFilename);
+					InputStream is = context.getResources().openRawResource(R.raw.jz);
+					FileOutputStream fos = new FileOutputStream(databaseFilename);
 					byte[] buffer = new byte[8192];
 					int count = 0;
 					// 开始复制jz.db文件
@@ -106,7 +104,6 @@ public class DatabaseHelper {
 				}
 				mDatabaseReady = true;
 				// 打开/sdcard/kaojz目录中的jz.db文件
-
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -115,6 +112,21 @@ public class DatabaseHelper {
 			throw new IllegalStateException("悲剧了，用户没有存储卡~~");
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// /**
 	// * 根据游标cursor得到相应的一个question
 	// * @param cursor

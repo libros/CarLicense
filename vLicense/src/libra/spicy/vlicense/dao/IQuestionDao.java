@@ -13,7 +13,6 @@ public interface IQuestionDao {
 
 	/**
 	 * 查找某一个章节题目的数量
-	 * 
 	 * @param pChapter
 	 *            章节编号
 	 * @return 章节编号下的问题数量
@@ -71,7 +70,7 @@ public interface IQuestionDao {
 	public List<Question> findQuestions(int pQuestionId, int pNextAmount,
 			LookDirection pLookDirection);
 
-	/*
+	/**
 	 * 同上，最后一个参数如果是true表示仅仅返回与pQuestionId在同一章节的所有试题，如果不够pNextAmount则有多少返回多少
 	 * 如果参数withinSameChapter 为false，则与上一个函数一样
 	 */
